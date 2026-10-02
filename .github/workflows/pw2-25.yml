@@ -42,17 +42,17 @@ jobs:
 
           # 下载 x86_64 apk
           curl -L --fail --retry 5 --retry-delay 3 \
-            -o passwall_packages_apk_x86_64.zip \
+            -o packages_apk_x86_64.zip \
             "https://github.com/Openwrt-Passwall/openwrt-passwall2/releases/download/${latest_tag}/packages_apk_x86_64.zip"
 
           # 下载 aarch64 a53 apk
           curl -L --fail --retry 5 --retry-delay 3 \
-            -o passwall_packages_apk_aarch64_cortex-a53.zip \
+            -o packages_apk_aarch64_cortex-a53.zip \
             "https://github.com/Openwrt-Passwall/openwrt-passwall2/releases/download/${latest_tag}/packages_apk_aarch64_cortex-a53.zip"
 
           # 下载 aarch64_generic apk
           curl -L --fail --retry 5 --retry-delay 3 \
-            -o passwall_packages_apk_aarch64_generic.zip \
+            -o packages_apk_aarch64_generic.zip \
             "https://github.com/Openwrt-Passwall/openwrt-passwall2/releases/download/${latest_tag}/packages_apk_aarch64_generic.zip"
 
           # 下载 luci app apk
@@ -78,22 +78,22 @@ jobs:
       - name: Organize files for x86_64
         run: |
           mkdir -p passwall_x86_64/depends passwall_x86_64/main
-          unzip downloads/passwall_packages_apk_x86_64.zip -d passwall_x86_64/depends
-          rm downloads/passwall_packages_apk_x86_64.zip
+          unzip downloads/packages_apk_x86_64.zip -d passwall_x86_64/depends
+          rm downloads/packages_apk_x86_64.zip
           cp downloads/luci-*.apk passwall_x86_64/main/
 
       - name: Organize files for aarch64_cortex-a53
         run: |
           mkdir -p passwall_aarch64-a53/depends passwall_aarch64-a53/main
-          unzip downloads/passwall_packages_apk_aarch64_cortex-a53.zip -d passwall_aarch64-a53/depends
-          rm downloads/passwall_packages_apk_aarch64_cortex-a53.zip
+          unzip downloads/packages_apk_aarch64_cortex-a53.zip -d passwall_aarch64-a53/depends
+          rm downloads/packages_apk_aarch64_cortex-a53.zip
           cp downloads/luci-*.apk passwall_aarch64-a53/main/
 
       - name: Organize files for aarch64_generic
         run: |
           mkdir -p passwall_aarch64_generic/depends passwall_aarch64_generic/main
-          unzip downloads/passwall_packages_apk_aarch64_generic.zip -d passwall_aarch64_generic/depends
-          rm downloads/passwall_packages_apk_aarch64_generic.zip
+          unzip downloads/packages_apk_aarch64_generic.zip -d passwall_aarch64_generic/depends
+          rm downloads/packages_apk_aarch64_generic.zip
           cp downloads/luci-*.apk passwall_aarch64_generic/main/
 
       - name: Create install.sh scripts
